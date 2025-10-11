@@ -1,5 +1,6 @@
 import os
 from typing import Callable, Collection
+import functools
 
 from opentelemetry import trace
 from opentelemetry.instrumentation.instrumentor import BaseInstrumentor
@@ -112,6 +113,7 @@ def _wrap_client(tracer: trace.Tracer):
 
 
 def _wrap_coroutine(value: Callable, *, tracer: trace.Tracer, excluded_tasks: tuple[str]):
+    @functools.wraps(value)
     async def _fake_coroutine(ctx: dict, *args, **kwargs):
         function_name = value.__name__
 
