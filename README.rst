@@ -22,6 +22,12 @@ Usage
 
     ArqInstrumentor.instrument()
 
+Warning
+---------
+Because of the protocol problem of arq , if the client side adds OTEL,  the server side will report an error if server does not add OTEL.
+
+server side adds OTEL and client not add OTEL is no problem.
+
 Test
 ------
 
